@@ -1,0 +1,72 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-paper text-text font-sans selection:bg-teal selection:text-white;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background-color: #0F8B8D;
+    color: #FFFFFF;
+  }
+}
+
+/* Outlined text stroke effect for giant headers & step numbers */
+.stroke-text {
+  -webkit-text-stroke-width: 1.5px;
+}
+
+/* Infinite Marquee Animation */
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee-track {
+  animation: marquee 38s linear infinite;
+}
+
+/* ECG Line Pulse */
+@keyframes ecgPulse {
+  0% {
+    stroke-dashoffset: 288;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+.ecg-pulse-line {
+  stroke-dasharray: 144;
+  animation: ecgPulse 3s linear infinite;
+}
+
+/* Turn off smooth scroll & animations if prefers-reduced-motion is active */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .marquee-track {
+    animation: none !important;
+  }
+}
+

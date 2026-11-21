@@ -3,10 +3,10 @@ import { Gauge, ArrowUpRight, ArrowDownRight } from 'lucide-react';
 
 export const RcmKpiVisual: React.FC<{ isDark?: boolean }> = ({ isDark = true }) => {
   const kpis = [
-    { label: 'Clean Claim Rate', value: '98.4%', target: '&gt; 95%', trend: 'up', note: '+2.4% vs Nat Avg' },
-    { label: 'Days in A/R', value: '28.2', target: '&lt; 35 Days', trend: 'down', note: '-8.5 Days Reduced' },
-    { label: 'Initial Denial Rate', value: '2.8%', target: '&lt; 5%', trend: 'down', note: 'Top Decile' },
-    { label: 'Net Collection Rate', value: '98.9%', target: '&gt; 96%', trend: 'up', note: 'Optimal Cash Flow' },
+    { label: 'Clean-claim rate', value: '98.2%', target: '> 95%', trend: 'up', note: '+2.1% vs Nat Avg' },
+    { label: 'Days in AR', value: '34', target: '< 40 Days', trend: 'down', note: '-4.2 Days Reduced' },
+    { label: 'Initial denial rate', value: '1.8%', target: '< 3%', trend: 'down', note: 'Top Decile' },
+    { label: 'Coding accuracy', value: '98.5%', target: '98.5% Gate', trend: 'up', note: 'QA Verified' },
   ];
 
   return (
@@ -51,4 +51,3 @@ export const RcmKpiVisual: React.FC<{ isDark?: boolean }> = ({ isDark = true }) 
     </div>
   );
 };
-

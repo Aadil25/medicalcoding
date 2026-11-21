@@ -35,28 +35,24 @@ export const Footer: React.FC = () => {
         { label: 'Denial Management & Appeals', href: '#services' },
         { label: 'Accounts Receivable Cleanup', href: '#services' },
         { label: 'Coding Audits & Provider QA', href: '#services' },
-        { label: 'End-to-End RCM Orchestration', href: '#services' },
+        { label: 'End-to-end RCM', href: '#services' },
       ],
     },
     {
-      title: 'Technology & AI',
-      items: [
-        { label: 'Computer-Assisted Coding (CAC)', href: '#ai' },
-        { label: 'Denial Prediction Models', href: '#ai' },
-        { label: 'EHR Interoperability (HL7/FHIR)', href: '#ai' },
-        { label: 'CMS-HCC Risk Adjustment Engine', href: '#ai' },
-        { label: 'Clinical Documentation AI', href: '#ai' },
-        { label: 'Live Client Telemetry Portal', href: '#reporting' },
-      ],
+      title: 'EHR systems',
+      items: SITE_CONTENT.ehrSystems.map((ehr) => ({
+        label: ehr,
+        href: '#services',
+      })),
     },
     {
       title: 'Company & Practice',
       items: [
-        { label: 'About Crystal Clear One', href: '#' },
+        { label: 'Why choose us', href: '#why' },
         { label: '5-Stage Delivery Process', href: '#process' },
         { label: 'Clinical Specialties (30+)', href: '#specialties' },
+        { label: 'Coding Coverage', href: '#coverage' },
         { label: 'Security & Compliance', href: '#compliance' },
-        { label: 'Medical Writing (Coming Soon)', href: '#writing' },
         { label: 'Complimentary 50-Chart Audit', href: '#contact' },
       ],
     },
@@ -65,10 +61,8 @@ export const Footer: React.FC = () => {
   return (
     <footer className="bg-white text-text border-t border-line pt-16 pb-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
         {/* Top Footer Row */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 pb-16 border-b border-line">
-          
           {/* Brand & Socials Column */}
           <div className="lg:col-span-4 flex flex-col justify-between">
             <div>
@@ -81,7 +75,7 @@ export const Footer: React.FC = () => {
               </p>
 
               <p className="mt-3 text-sm text-muted leading-relaxed max-w-sm">
-                Empowering US hospitals, clinics, and physician practices with credentialed medical coding, seamless billing velocity, and responsible healthcare AI engineering.
+                Empowering US hospitals, clinics, and physician practices with credentialed medical coding, seamless billing velocity, and 98.5% verified accuracy.
               </p>
 
               <div className="mt-5 inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-mist border border-teal/30 text-xs font-mono text-teal">
@@ -132,7 +126,6 @@ export const Footer: React.FC = () => {
               </div>
             ))}
           </div>
-
         </div>
 
         {/* Bottom Legal & Copyright Bar */}
@@ -165,9 +158,7 @@ export const Footer: React.FC = () => {
             </button>
           </div>
         </div>
-
       </div>
     </footer>
   );
 };
-

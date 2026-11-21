@@ -1,5 +1,5 @@
 import React from 'react';
-import { ShieldCheck, FileCheck, Stethoscope } from 'lucide-react';
+import { ShieldCheck, Stethoscope } from 'lucide-react';
 
 export const EncounterVisual: React.FC<{ isDark?: boolean }> = ({ isDark = false }) => {
   return (
@@ -16,7 +16,7 @@ export const EncounterVisual: React.FC<{ isDark?: boolean }> = ({ isDark = false
           <span className="font-bold tracking-tight">ENCOUNTER #ENC-84920</span>
         </div>
         <span className="px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-600 text-[10px] font-bold">
-          Dual Coded ✓
+          Coded · QA passed · 98.5%
         </span>
       </div>
 
@@ -47,18 +47,17 @@ export const EncounterVisual: React.FC<{ isDark?: boolean }> = ({ isDark = false
 
         <div className="p-2.5 rounded-xl bg-teal/10 border border-teal/40 flex items-center justify-between">
           <div>
-            <div className="text-[10px] text-teal font-bold">E/M LEVEL DETERMINATION</div>
-            <div className="font-bold text-teal-bright text-xs">99214 · Office/Outpatient Visit (Moderate MDM)</div>
+            <div className="text-[10px] text-teal font-bold">E/M 2027 LEVEL DETERMINATION</div>
+            <div className="font-bold text-teal-bright text-xs">99214 · Office Visit (Moderate MDM)</div>
           </div>
           <ShieldCheck className="w-4 h-4 text-teal" />
         </div>
       </div>
 
       <div className="mt-3 pt-2.5 border-t border-line/40 flex items-center justify-between text-[10px] text-muted">
-        <span>Auditor: CPC/CRC #2841</span>
+        <span>Auditor: CPC/CRC Senior Lead</span>
         <span className="text-teal font-semibold">100% Coder Signed</span>
       </div>
     </div>
   );
 };
-

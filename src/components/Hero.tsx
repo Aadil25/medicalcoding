@@ -3,7 +3,7 @@ import { ParticleCanvas } from './ParticleCanvas';
 import { HeroWaves } from './HeroWaves';
 import { MaleDoctorPortrait, FemaleDoctorPortrait } from './DoctorPortraits';
 import { SITE_CONTENT } from '../content/site-content';
-import { gsap, ScrollTrigger } from '../animations/gsap-setup';
+import { gsap } from '../animations/gsap-setup';
 import { useReducedMotion } from '../hooks/useReducedMotion';
 import { ArrowRight, CheckCircle2, ShieldCheck, Activity, Clock } from 'lucide-react';
 
@@ -215,7 +215,6 @@ export const Hero: React.FC = () => {
       {/* Hero Content Container */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 my-auto w-full">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
-          
           {/* Left Column: Editorial & Value Proposition */}
           <div ref={leftColRef} className="lg:col-span-7 flex flex-col justify-center">
             {/* Eyebrow */}
@@ -257,10 +256,14 @@ export const Hero: React.FC = () => {
               </a>
             </div>
 
-            {/* Trust Badges Row */}
+            {/* Trust Row: 98.5% coding accuracy · 24×7 support */}
             <div className="mt-10 pt-7 border-t border-white/10 flex flex-col gap-3">
               <div className="flex flex-wrap items-center gap-2 sm:gap-3">
-                {SITE_CONTENT.hero.badges.map((badge) => (
+                <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-teal/20 border border-teal text-xs font-mono font-bold text-white shadow-sm">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-teal-bright" />
+                  <span>{SITE_CONTENT.hero.trustMetric}</span>
+                </div>
+                {SITE_CONTENT.hero.badges.slice(2).map((badge) => (
                   <div
                     key={badge}
                     className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-navy-deep/80 border border-teal/40 text-[11px] sm:text-xs font-mono font-medium text-teal-bright"
@@ -336,7 +339,7 @@ export const Hero: React.FC = () => {
                   Claim Status
                 </div>
                 <div className="text-xs font-bold text-navy flex items-center gap-1">
-                  <span>Clean Claim 98.4%</span>
+                  <span>Clean Claim 98.2%</span>
                   <span className="text-[9px] px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-800 font-mono">
                     Pass
                   </span>
@@ -344,7 +347,7 @@ export const Hero: React.FC = () => {
               </div>
             </div>
 
-            {/* Floating Glass Card 3: Live Patient Vitals with Animated ECG Line */}
+            {/* Floating Glass Card 3: Two-Level QA Gate */}
             <div
               ref={card3Ref}
               className="absolute bottom-10 -left-6 sm:left-2 z-30 bg-navy-deep/90 backdrop-blur-md border border-teal/30 rounded-20 px-4 py-3 shadow-navy-soft transition-transform duration-100 ease-out"
@@ -352,11 +355,10 @@ export const Hero: React.FC = () => {
               <div className="flex items-center justify-between gap-3 mb-1">
                 <div className="flex items-center gap-1.5 text-[10px] font-mono text-teal-bright">
                   <Activity className="w-3.5 h-3.5 animate-pulse text-teal-bright" />
-                  <span>Telemetry Ingest</span>
+                  <span>Two-Level QA Gate</span>
                 </div>
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
               </div>
-              {/* Animated ECG Waveform SVG */}
               <div className="w-36 h-6 overflow-hidden">
                 <svg viewBox="0 0 144 24" className="w-full h-full" fill="none">
                   <path
@@ -370,7 +372,7 @@ export const Hero: React.FC = () => {
                 </svg>
               </div>
               <div className="text-[9px] font-mono text-slate-300 mt-1">
-                HL7 v2.8 & FHIR R4 Pipeline
+                Dual-Pass Verification · 98.5% Gate
               </div>
             </div>
 
@@ -391,9 +393,7 @@ export const Hero: React.FC = () => {
                 </div>
               </div>
             </div>
-
           </div>
-
         </div>
       </div>
 
@@ -402,4 +402,3 @@ export const Hero: React.FC = () => {
     </section>
   );
 };
-

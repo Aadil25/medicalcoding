@@ -10,12 +10,11 @@ import { ServiceStack } from './components/ServiceStack';
 import { Specialties } from './components/Specialties';
 import { Process } from './components/Process';
 import { TiltDashboard } from './components/TiltDashboard';
-import { AiCodingDemo } from './components/AiCodingDemo';
-import { AiRail } from './components/AiRail';
+import { CodingDemo } from './components/CodingDemo';
+import { Coverage } from './components/Coverage';
 import { WhyChoose } from './components/WhyChoose';
 import { Compliance } from './components/Compliance';
 import { Engagement } from './components/Engagement';
-import { MedicalWriting } from './components/MedicalWriting';
 import { Locations } from './components/Locations';
 import { Faq } from './components/Faq';
 import { Contact } from './components/Contact';
@@ -59,11 +58,11 @@ export const App: React.FC = () => {
         {/* 8. Transparent Reporting: 3D Tilting Dashboard */}
         <TiltDashboard />
 
-        {/* 9. Live AI Coding Demo */}
-        <AiCodingDemo />
+        {/* 9. Live Coding Demo (Human Coder Work) */}
+        <CodingDemo />
 
-        {/* 10. AI/ML & Healthcare Systems: Pinned Horizontal Rail */}
-        <AiRail />
+        {/* 10. Coding Coverage Across Care Settings: Pinned Horizontal Rail */}
+        <Coverage />
 
         {/* 11. Why Choose Crystal Clear One */}
         <WhyChoose />
@@ -74,24 +73,20 @@ export const App: React.FC = () => {
         {/* 13. Engagement Models */}
         <Engagement />
 
-        {/* 14. Medical Writing: Coming Soon */}
-        <MedicalWriting />
-
-        {/* 15. Two Locations, One Team (US & India Live Clocks) */}
+        {/* 14. Two Locations, One Team (US & India Live Clocks) */}
         <Locations />
 
-        {/* 16. FAQ Accordion */}
+        {/* 15. FAQ Accordion */}
         <Faq />
 
-        {/* 17. Contact & Consultation Booking Form */}
+        {/* 16. Contact & Consultation Booking Form */}
         <Contact />
       </main>
 
-      {/* 18. Footer */}
+      {/* 17. Footer */}
       <Footer />
     </div>
   );
 };
 
 export default App;
-

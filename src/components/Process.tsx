@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { SITE_CONTENT, ProcessStep } from '../content/site-content';
-import { ShieldCheck, Cpu, UserCheck, Award, Send, CheckCircle2 } from 'lucide-react';
+import { SITE_CONTENT } from '../content/site-content';
+import { ShieldCheck, FileText, UserCheck, Award, Send, CheckCircle2 } from 'lucide-react';
 
 const stepIcons = [
   <ShieldCheck className="w-5 h-5 text-teal" />,
-  <Cpu className="w-5 h-5 text-teal" />,
+  <FileText className="w-5 h-5 text-teal" />,
   <UserCheck className="w-5 h-5 text-teal" />,
   <Award className="w-5 h-5 text-teal" />,
   <Send className="w-5 h-5 text-teal" />,
@@ -65,7 +65,7 @@ export const Process: React.FC = () => {
             </h2>
 
             <p className="mt-5 text-base sm:text-lg text-muted leading-relaxed">
-              Every chart flows through an audited, multi-layered verification protocol that combines speed, clinical accuracy, and total compliance with zero manual drag.
+              Every chart is coded by a certified coder matched to its specialty, and a senior auditor checks every batch before it goes back to you.
             </p>
 
             {/* Giant Outlined Step Number Display */}
@@ -101,8 +101,8 @@ export const Process: React.FC = () => {
             </div>
 
             <div className="mt-8 p-4 rounded-20 bg-mist/60 border border-teal/20 text-xs text-text max-w-sm">
-              <span className="font-bold text-teal block mb-1">Human-in-the-Loop Safeguard:</span>
-              AI pre-screens and flags indicators, but 100% of encounters are certified and signed by credentialed coders.
+              <span className="font-bold text-teal block mb-1">Two-Level Quality Safeguard:</span>
+              Every chart is coded by a specialty-credentialed professional and audited to guarantee our 98.5% accuracy standard.
             </div>
           </div>
 

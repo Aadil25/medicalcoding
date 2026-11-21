@@ -27,10 +27,10 @@ export interface ProcessStep {
   specs: string[];
 }
 
-export interface AiSystemItem {
+export interface CoverageCardItem {
   number: string;
+  setting: string;
   title: string;
-  category: string;
   description: string;
   bullets: string[];
   isTealAccent?: boolean;
@@ -59,12 +59,13 @@ export interface EngagementPlan {
 export interface FaqItem {
   question: string;
   answer: string;
+  ehrList?: string[];
 }
 
 export const SITE_CONTENT = {
   brand: {
     name: 'Crystal Clear One.net LLC',
-    shortName: 'Crystal Clear One',
+    shortName: 'Crystal Clear 1.net LLC',
     tagline: 'Clarity. Innovation. Excellence.',
     url: 'https://crystalclearone.net',
     phone: '+1 (XXX) XXX-XXXX [[REAL NUMBER]]',
@@ -88,9 +89,9 @@ export const SITE_CONTENT = {
   nav: [
     { label: 'Services', href: '#services' },
     { label: 'Process', href: '#process' },
-    { label: 'AI & ML', href: '#ai' },
+    { label: 'Reporting', href: '#reporting' },
+    { label: 'Coverage', href: '#coverage' },
     { label: 'Compliance', href: '#compliance' },
-    { label: 'Medical Writing', href: '#writing' },
     { label: 'FAQ', href: '#faq' },
   ],
 
@@ -98,11 +99,12 @@ export const SITE_CONTENT = {
     eyebrow: 'Healthcare revenue solutions for US providers',
     titleMain: 'Simplify your medical coding & billing,',
     titleAccent: 'with clarity.',
-    lede: 'Professional, reliable and cost-efficient revenue cycle support for hospitals, clinics and physician practices. Certified coders and our own healthcare AI work together, so your claims go out clean and your team gets time back.',
+    lede: 'Professional, reliable and cost-efficient revenue cycle support for hospitals, clinics and physician practices. Certified coders, a two-level quality process and 24×7 support mean your claims go out clean and your team gets time back.',
     ctaPrimary: 'Book a Consultation',
     ctaSecondary: 'Explore Services',
-    trustNote: 'Credentialed coding team · US client services · India delivery operations',
-    badges: ['AAPC · CPC', 'AHIMA · CCS', 'CRC Risk Adjustment', 'CIC Inpatient'],
+    trustNote: 'US client services · India delivery operations',
+    trustMetric: '98.5% coding accuracy · 24×7 support',
+    badges: ['98.5% Coding Accuracy', '24×7 Support', 'AAPC · CPC', 'AHIMA · CCS', 'CRC · CIC'],
     floatingCards: [
       {
         id: 'code-chip',
@@ -118,9 +120,9 @@ export const SITE_CONTENT = {
       },
       {
         id: 'vitals-ecg',
-        title: 'Live Engine Telemetry',
-        indicator: 'Active Ingest Stream',
-        detail: 'HL7 v2 & FHIR R4',
+        title: 'Two-Level QA Gate',
+        indicator: 'Audited Encounter Feed',
+        detail: 'Dual-Pass Verification',
       },
       {
         id: 'turnaround',
@@ -136,14 +138,14 @@ export const SITE_CONTENT = {
     'ICD-10-PCS',
     'CPT® Professional',
     'HCPCS Level II',
-    'E/M 2024 Guidelines',
+    'E/M 2027 Guidelines',
     'MS-DRG Inpatient',
     'APR-DRG Ped/Critical',
     'CMS-HCC Model V28',
     'NCCI Edits & PTP',
     'Modifiers -25, -59, -X{EPSU}',
     'CARC / RARC Remits',
-    'HL7 v2.8 & FHIR R4',
+    'Epic · eClinicalWorks · Allscripts',
     'OIG Work Plan Compliance',
   ],
 
@@ -156,34 +158,38 @@ export const SITE_CONTENT = {
       'so', 'your', 'physicians', 'can', 'focus', 'on', 'care',
       'and', 'your', 'revenue', 'stays', 'clear.'
     ],
-    highlightIndices: [14, 15, 16, 29, 34, 35], // "tells the same story", "care", "clear"
+    highlightIndices: [14, 15, 16, 29, 34, 35],
     signature: 'Crystal Clear One.net LLC · Clarity. Innovation. Excellence.',
   },
 
   stats: [
     {
-      value: 95,
-      suffix: '%+',
-      label: 'Accuracy Target',
-      note: 'Certified dual-pass review [[CONFIRM]]',
+      value: 98.5,
+      decimals: 1,
+      suffix: '%',
+      label: 'Coding Accuracy',
+      note: 'Verified through two-level QA audits',
     },
     {
       value: 24,
+      decimals: 0,
       suffix: 'hr',
       label: 'Outpatient Turnaround',
-      note: 'Rapid queue clearing [[CONFIRM]]',
+      note: 'Rapid queue clearing',
     },
     {
       value: 30,
+      decimals: 0,
       suffix: '+',
       label: 'Clinical Specialties',
-      note: 'Sub-specialty certified coders [[CONFIRM]]',
+      note: 'Sub-specialty certified coders',
     },
     {
-      value: 100,
-      suffix: '%',
-      label: 'Human-Finalized',
-      note: 'Every single chart signed by a certified coder',
+      value: 24,
+      decimals: 0,
+      suffix: '×7',
+      label: '24×7 Support',
+      note: 'Support for your team, every day of the year',
     },
   ],
 
@@ -197,9 +203,9 @@ export const SITE_CONTENT = {
       bullets: [
         'Outpatient clinic, emergency department, inpatient MS-DRG, and ambulatory surgery',
         'CMS-HCC risk adjustment capture with documented clinical indicators',
-        'Rigorous compliance with NCCI edits, modifier logic, and payer-specific LCD/NCD rules',
+        'E/M 2027 guidelines applied for professional services with NCCI modifier logic',
       ],
-      chips: ['ICD-10-CM', 'CPT®', 'HCPCS', 'HCC V28', 'DRG'],
+      chips: ['ICD-10-CM', 'CPT®', 'HCPCS', 'HCC V28', 'E/M 2027'],
       visualType: 'coding' as const,
       isDark: false,
     },
@@ -240,7 +246,7 @@ export const SITE_CONTENT = {
       serifAccent: 'driving down days in A/R',
       description: 'Relentless, compliant resolution of 30, 60, 90, and 120+ day balances across commercial payers, Medicare, Medicaid, and Medicare Advantage plans.',
       bullets: [
-        'Aggressive payer follow-up via automated API status checks and experienced payer reps',
+        'Aggressive payer follow-up via automated status checks and experienced payer reps',
         'Underpayment identification and contractual allowance auditing',
         'Dedicated legacy A/R cleanup teams that unlock stranded cash in older receivables',
       ],
@@ -259,22 +265,22 @@ export const SITE_CONTENT = {
         'E/M bell-curve distribution profiling compared against national specialty benchmarks',
         'Targeted, non-punitive physician documentation improvement (CDI) recommendations',
       ],
-      chips: ['Baseline Audits', 'E/M Bell Curves', 'CDI Feedback', 'OIG Safety'],
+      chips: ['Baseline Audits', 'E/M Bell Curves', 'CDI Feedback', '98.5% Accuracy'],
       visualType: 'audit' as const,
       isDark: false,
     },
     {
       id: 'revenue-cycle',
       number: '06',
-      title: 'End-to-End Revenue Cycle Management',
+      title: 'End-to-end revenue cycle management',
       serifAccent: 'built around your practice',
-      description: 'Full-spectrum RCM orchestration combining certified human talent with intelligent automation from patient scheduling and eligibility verification through to final balance resolution.',
+      description: 'Full-spectrum RCM orchestration combining certified human talent with structured workflows from patient scheduling and eligibility verification through to final balance resolution.',
       bullets: [
+        'Initial denial rate held at 1.8%',
         'Seamless handoff across intake, authorization, coding, billing, and patient collections',
-        'Live executive dashboards providing crystal-clear visibility into every metric',
-        'Dedicated US account manager paired with 24/7 offshore production teams',
+        'Dedicated US account manager paired with 24×7 delivery operations',
       ],
-      chips: ['Full-Lifecycle', 'Real-Time KPI', 'Dedicated Manager', 'EHR Agnostic'],
+      chips: ['Full-Lifecycle', '1.8% Denial Rate', 'Dedicated Lead', '24×7 Support'],
       visualType: 'rcm' as const,
       isDark: true,
     },
@@ -333,7 +339,7 @@ export const SITE_CONTENT = {
       id: 'primary-care',
       name: 'Primary Care & Internal Med',
       code: 'E/M 99202-99215',
-      description: 'Chronic care management (CCM), transitional care (TCM), AWVs, and accurate HCC capture.',
+      description: 'Chronic care management (CCM), transitional care (TCM), AWVs, and accurate HCC capture under E/M 2027.',
       icon: 'Stethoscope',
     },
     {
@@ -350,33 +356,33 @@ export const SITE_CONTENT = {
       step: '01',
       title: 'Secure Intake & BAA Execution',
       tagline: 'Encrypted, HIPAA-compliant pipeline',
-      description: 'We execute a mutual Business Associate Agreement (BAA), establish encrypted VPN or OAuth 2.0 EHR bridge access, and configure your practice guidelines within 48 hours.',
+      description: 'We execute a mutual Business Associate Agreement (BAA), establish encrypted VPN or secure credentials to your EHR, and configure your practice guidelines within 48 hours.',
       highlight: 'Full HIPAA compliance with signed BAA and audited access credentials',
-      specs: ['Epic', 'Oracle Health / Cerner', 'athenahealth', 'Meditech', 'eClinicalWorks'],
+      specs: ['IMS', 'eClinicalWorks', 'Epic', 'Allscripts', 'MD Office Manager', 'Practice Fusion'],
     },
     {
       step: '02',
-      title: 'AI Pre-Coding & Clinical Ingestion',
-      tagline: 'Intelligent clinical NLP parsing',
-      description: 'Our proprietary healthcare NLP engine ingests progress notes, highlights diagnostic indicators, cross-references latest CMS-HCC tables, and flags ambiguous documentation.',
-      highlight: 'Pre-screens 100% of charts for missing laterality, specificity, and query opportunities',
-      specs: ['CMS-HCC V28 Engine', 'NCCI Logic Check', 'CDI Query Flagging', 'Sub-second Ingest'],
+      title: 'Specialty routing & chart abstraction',
+      tagline: 'Specialty-matched coders · documentation gap checks',
+      description: 'Each chart goes to a coder who knows the specialty. They abstract diagnoses and procedures and note missing details such as laterality, acuity or stage.',
+      highlight: 'Specialty-matched coders abstract chart details and flag missing documentation',
+      specs: ['Specialty Assignment', 'Clinical Abstraction', 'Laterality & Acuity Checks', 'Physician Query Prep'],
     },
     {
       step: '03',
-      title: 'Certified Coder Review & Validation',
-      tagline: '100% human accountability',
-      description: 'A credentialed coder (CPC, CCS, or CRC) examines the primary chart, validates or refines the AI suggestions, confirms medical necessity, and applies accurate modifiers.',
-      highlight: 'AI never files claims autonomously; every code is certified by an experienced human specialist',
-      specs: ['AAPC / AHIMA Certified', 'Specialty-Matched Coders', 'Dual-Code Validation'],
+      title: 'Code assignment & validation',
+      tagline: 'CPC · CCS · CRC · CIC credentialed coders',
+      description: 'Codes are assigned and checked against official guidelines, E/M 2027 rules, NCCI edits and payer policy. Physician queries go out when the record is unclear.',
+      highlight: 'Rigorous verification under official guidelines, E/M 2027 rules, and payer policies',
+      specs: ['AAPC / AHIMA Certified', 'E/M 2027 Standards', 'NCCI & LCD/NCD Checks', 'Physician Clarifications'],
     },
     {
       step: '04',
       title: 'Second-Level QA Audit & Scrubbing',
-      tagline: 'Rigorous 95%+ accuracy gate',
-      description: 'A senior QA auditor samples charts for E/M balance, unbundling traps, and LCD/NCD compliance before transmission, ensuring our client target of 95%+ accuracy is upheld.',
+      tagline: 'Rigorous 98.5% accuracy gate',
+      description: 'A senior QA auditor samples charts for E/M balance, unbundling traps, and LCD/NCD compliance before transmission, ensuring our client target of 98.5% accuracy is upheld.',
       highlight: 'Zero tolerance for compliance drift, pre-empting payer clawbacks and audits',
-      specs: ['Pre-Submission Scrub', 'Statistical Random Sampling', 'Audit Scorecard Logging'],
+      specs: ['Pre-Submission Scrub', 'Statistical Random Sampling', 'Audit Scorecard Logging', '98.5% Gate'],
     },
     {
       step: '05',
@@ -384,7 +390,7 @@ export const SITE_CONTENT = {
       tagline: 'Clean claims out, live insights in',
       description: 'Clean claims transmit directly to your clearinghouse or EHR queue. You access live dashboards showing turnaround times, clean-claim rates, and denial trends.',
       highlight: 'Complete visibility into turnaround times, coder notes, and daily production stats',
-      specs: ['Sub-24hr Turnaround', 'Live Portal Analytics', 'Weekly RCM Debriefs'],
+      specs: ['Sub-24hr Turnaround', 'Live Portal Analytics', 'Weekly RCM Debriefs', '24×7 Availability'],
     },
   ],
 
@@ -392,11 +398,12 @@ export const SITE_CONTENT = {
     url: 'portal.crystalclearone.net/analytics',
     period: 'Current Month · Production Live',
     kpis: [
-      { label: 'Clean Claim Rate', value: '97.4%', delta: '+2.1% vs benchmark', trend: 'up' },
-      { label: 'Days in A/R (DNFB)', value: '28.2', suffix: 'Days', delta: '-6.4 days YoY', trend: 'down' },
-      { label: 'First-Pass Denial Rate', value: '2.8%', delta: '-1.4% reduction', trend: 'down' },
-      { label: 'Total Charges Processed', value: '$4.28M', delta: 'Sample period data', trend: 'neutral' },
+      { label: 'Coding Accuracy', value: '98.5%', delta: 'QA verified', trend: 'up' },
+      { label: 'Days in A/R (DNFB)', value: '34', suffix: 'Days', delta: '-4.2 days YoY', trend: 'down' },
+      { label: 'Initial Denial Rate', value: '1.8%', delta: '▼ 2.4 pts', trend: 'down' },
+      { label: 'Clean Claim Rate', value: '98.2%', delta: '+2.1% vs benchmark', trend: 'up' },
     ],
+    chartTitle: 'Coding accuracy, last 6 months',
     denialReasons: [
       { code: 'CO-16', label: 'Missing / Incomplete Info', pct: 38, count: 42 },
       { code: 'CO-97', label: 'Bundled / Inclusive Charge', pct: 26, count: 29 },
@@ -405,10 +412,13 @@ export const SITE_CONTENT = {
     ],
   },
 
-  aiDemo: {
-    title: 'Watch a clinical note become a claim.',
-    subtitle: 'See how our healthcare NLP pre-screens clinical documentation, maps validated ICD-10-CM and CPT® codes, and detects CDI query opportunities before a certified coder reviews it.',
+  codingDemo: {
+    eyebrow: 'Coding in action',
+    title: 'See how our coders turn a note',
+    titleAccent: 'into a clean claim.',
+    subtitle: 'A certified coder reads the note, marks the clinical evidence, assigns each code and flags what the documentation is missing, before a QA auditor signs off.',
     noteText: '62-year-old male, established patient, seen for follow-up of type 2 diabetes mellitus with diabetic chronic kidney disease. Latest eGFR 52, consistent with CKD stage 3a. History of hypertension, BP 142/88 today; lisinopril dose increased. Continues insulin glargine nightly; A1c 8.1%, up from 7.6%. Reviewed labs, adjusted two prescription medications, discussed renal referral. Medical decision making: moderate. Diabetic retinopathy mentioned in history without status or laterality.',
+    panelTitle: 'Assigned codes',
     steps: [
       {
         id: 1,
@@ -446,9 +456,9 @@ export const SITE_CONTENT = {
         id: 5,
         phrase: 'established patient / MDM moderate',
         code: '99214',
-        tag: 'E/M',
+        tag: 'E/M 2027',
         category: 'Evaluation & Management',
-        rationale: 'Office/outpatient visit for established patient; 2 chronic conditions + prescription drug mgmt.',
+        rationale: 'Office/outpatient visit for established patient under E/M 2027 rules; moderate MDM.',
       },
       {
         id: 6,
@@ -460,110 +470,116 @@ export const SITE_CONTENT = {
         rationale: 'Clinical documentation improvement flag: query provider for proliferative vs nonproliferative, with/without macular edema, laterality.',
       },
     ],
-    disclaimer: 'Sample note written for demonstration. Contains no real patient data. [[Have a certified coder verify the codes and HCC mappings]]',
+    disclaimer: 'Sample note written for demonstration. Contains no real patient data.',
   },
 
-  aiRail: [
-    {
-      number: '01',
-      title: 'Computer-Assisted Coding (CAC) Engines',
-      category: 'Clinical NLP & Ingestion',
-      description: 'Domain-trained deep learning models that ingest unstructured physician notes, operative summaries, and discharge notes to extract high-confidence diagnostic and procedure candidates.',
-      bullets: [
-        'Context-aware entity extraction tuned to ICD-10-CM and CPT® conventions',
-        'Automatic cross-referencing with CMS-HCC V28 risk adjustment categories',
-        'Human-in-the-loop review cockpit that reduces coder chart search time by 40%',
-      ],
-      isTealAccent: true,
-    },
-    {
-      number: '02',
-      title: 'Denial Prediction & RCM Automation',
-      category: 'Predictive Analytics',
-      description: 'Machine learning classifiers trained on millions of historical remit patterns to score claim denial probability prior to clearinghouse dispatch.',
-      bullets: [
-        'Pre-submission CARC/RARC risk scoring highlighting high-risk claims for manual review',
-        'Automated clearinghouse error remediation for common demographic and billing discrepancies',
-        'Root-cause cluster analysis pinpointing provider documentation drift',
-      ],
-    },
-    {
-      number: '03',
-      title: 'EHR Integration & Healthcare Data Platforms',
-      category: 'Interoperability Engineering',
-      description: 'Enterprise-grade pipelines that integrate directly with Epic, Oracle Health/Cerner, athenahealth, and custom electronic health records using modern interoperability standards.',
-      bullets: [
-        'Bi-directional HL7 v2 and FHIR R4 API connectors for patient and encounter feeds',
-        'HIPAA-compliant cloud architecture hosted in SOC 2 Type II Azure & AWS enclaves',
-        'Automated scheduling, charge capture, and payment ledger synchronization',
-      ],
-    },
-    {
-      number: '04',
-      title: 'Population Health & Risk Adjustment Models',
-      category: 'Risk Stratification',
-      description: 'Algorithms that scan longitudinal patient records to surface suspected uncaptured chronic conditions and support annual wellness visit planning for Value-Based Care.',
-      bullets: [
-        'Persistent condition persistence tracking across multi-year encounters',
-        'ACO and Medicare Advantage RAF score projection and documentation gap alerts',
-        'Audit-ready proof trails linking every predicted diagnosis back to clinical notes',
-      ],
-    },
-    {
-      number: '05',
-      title: 'Intelligent Assistants for Clinicians & Staff',
-      category: 'Generative AI Workflows',
-      description: 'Secure, fine-tuned LLM assistants that draft clinical appeal letters, translate complex payer medical policies, and summarize dense patient histories for providers.',
-      bullets: [
-        'Automated drafting of first-level denial appeal letters citing payer clinical policies',
-        'Conversational policy lookup across CMS LCD/NCD bulletins and commercial guidelines',
-        'Strict zero-retention data privacy guarantees with BAA enforcement',
-      ],
-    },
-    {
-      number: '06',
-      title: 'Custom Healthcare Portals & Web Applications',
-      category: 'Custom Software Development',
-      description: 'Bespoke web and mobile applications for hospital systems, medical billing companies, and clinical groups requiring enterprise-grade interfaces and real-time operational telemetry.',
-      bullets: [
-        'Tailored client billing dashboards with granular role-based access control (RBAC)',
-        'Physician query management portals with seamless mobile notification workflows',
-        'Full compliance with WCAG 2.1 AA accessibility and US healthcare digital standards',
-      ],
-    },
-  ],
+  coverage: {
+    eyebrow: 'Coding coverage',
+    title: 'Every care setting,',
+    titleAccent: 'one accountable coding team.',
+    sideText: 'From the inpatient floor to the physician office, our certified coders cover facility and professional coding on your EHR, with support available 24×7.',
+    cards: [
+      {
+        number: '01',
+        setting: 'INPATIENT',
+        title: 'Inpatient facility coding',
+        description: 'Complete ICD-10-CM and ICD-10-PCS coding with DRG validation for acute-care stays.',
+        bullets: [
+          'MS-DRG and APR-DRG assignment',
+          'POA indicators and CC/MCC capture',
+          'Physician queries for unclear records',
+        ],
+        isTealAccent: true,
+      },
+      {
+        number: '02',
+        setting: 'OUTPATIENT & ED',
+        title: 'Outpatient & emergency',
+        description: 'Emergency department, observation, same-day surgery and clinic visits coded for accurate facility payment.',
+        bullets: [
+          'ED facility and pro-fee levels',
+          'Observation and APC coding',
+          'Same-day surgery',
+        ],
+      },
+      {
+        number: '03',
+        setting: 'PROFESSIONAL FEE',
+        title: 'Physician & E/M coding',
+        description: 'Professional services coded under E/M 2027 guidelines, with correct modifiers and NCCI checks.',
+        bullets: [
+          'E/M leveling by MDM or time',
+          'Modifier and bundling review',
+          'Physician and NPP services',
+        ],
+      },
+      {
+        number: '04',
+        setting: 'RISK ADJUSTMENT',
+        title: 'HCC risk adjustment',
+        description: 'Retrospective and prospective reviews under CMS-HCC V28, with every diagnosis supported by the record.',
+        bullets: [
+          'MEAT-supported HCC capture',
+          'RAF impact reporting',
+          'RADV-ready documentation',
+        ],
+      },
+      {
+        number: '05',
+        setting: 'SURGICAL',
+        title: 'Surgical & interventional',
+        description: 'Operative and procedure reports for orthopedics, cardiology, general surgery and interventional radiology.',
+        bullets: [
+          'Global periods and bundling',
+          'Cath lab and interventional procedures',
+          'Multiple-procedure rules',
+        ],
+      },
+      {
+        number: '06',
+        setting: 'ANCILLARY',
+        title: 'Radiology, lab & anesthesia',
+        description: 'High-volume ancillary coding with fast turnaround and consistent modifier use.',
+        bullets: [
+          'Radiology -26 / -TC modifiers',
+          'Pathology and laboratory',
+          'Anesthesia base and time units',
+        ],
+      },
+    ] as CoverageCardItem[],
+  },
 
   whyChoose: [
     {
-      title: 'Dedicated Support & Account Leadership',
-      description: 'Every client is paired with a designated US-based client manager and a dedicated team of certified coders who learn your specific practice nuances and payer preferences.',
+      title: '24×7 dedicated support',
+      description: 'A named team and team lead who learn your practice, reachable around the clock.',
       icon: 'Headphones',
-      metric: '1:1',
-      metricLabel: 'Dedicated Account Pod',
+      metric: '24×7',
+      metricLabel: 'Always Available',
     },
     {
-      title: 'Quality-Focused Workflows',
-      description: 'A multi-tier QA system where 100% of charts are finalized by certified human specialists and routinely scrubbed by senior auditors to maintain a 95%+ accuracy target.',
+      title: '98.5% coding accuracy',
+      description: 'Specialty-matched coders and second-level audits on every batch.',
       icon: 'ShieldCheck',
-      metric: '95%+',
-      metricLabel: 'Accuracy Standard',
+      metric: '98.5%',
+      metricLabel: 'Audited Accuracy',
     },
     {
-      title: 'EHR/EMR Compatibility',
-      description: 'No software replacement required. We work directly inside your existing Epic, Oracle Health, athenahealth, Meditech, or custom platform without disruptive migrations.',
+      title: 'EHR/EMR compatibility',
+      description: 'We work inside IMS, eClinicalWorks, Epic, Allscripts, MD Office Manager and Practice Fusion.',
       icon: 'Cpu',
-      metric: '15+',
-      metricLabel: 'Compatible EHRs',
+      metric: 'Remote',
+      metricLabel: 'Direct EHR Access',
     },
     {
-      title: 'Secure Data Handling & BAA',
+      title: 'Secure data handling & BAA',
       description: 'Enterprise-grade security controls including end-to-end AES-256 encryption, zero local data caching, multi-factor authentication, and signed Business Associate Agreements.',
       icon: 'Lock',
       metric: '100%',
       metricLabel: 'HIPAA Compliant',
     },
     {
-      title: 'Transparent Reporting & Telemetry',
+      title: 'Transparent reporting & telemetry',
       description: 'Live visibility into daily production volumes, turnaround metrics, clean-claim rates, and denial trends through our secure client portal and weekly operational reviews.',
       icon: 'BarChart3',
       metric: 'Live',
@@ -590,11 +606,11 @@ export const SITE_CONTENT = {
         desc: 'All patient health information (PHI) is encrypted with AES-256 at rest and TLS 1.3 in transit. Role-Based Access Control (RBAC) ensures minimum necessary data exposure.',
       },
       {
-        title: 'Responsible AI & Certified Human Oversight',
-        desc: 'Our machine learning models assist only with document organization and code suggestion. 100% of claims are finalized and signed by certified human coders.',
+        title: '24×7 security monitoring',
+        desc: 'Systems and user access are monitored around the clock, with documented incident response procedures.',
       },
     ],
-    orbitPills: ['HIPAA Compliant', 'BAA Protected', 'AES-256 Bit', 'MFA Required', 'Audit Trails', 'SOC 2 Ready'],
+    orbitPills: ['HIPAA Compliant', 'BAA Protected', 'AES-256 Bit', 'MFA Required', 'Audit Trails', '24×7 Monitoring'],
   },
 
   engagement: [
@@ -627,7 +643,7 @@ export const SITE_CONTENT = {
         'Full integration into your EHR workflows & clinical messaging',
         'Custom SOP and practice-specific coding guidelines',
         'Continuous second-level QA auditing included',
-        'Priority SLA with sub-12hr emergency turnaround',
+        'Priority SLA with sub-12hr turnaround and 24×7 escalation',
       ],
       ctaText: 'Build Your Dedicated Pod',
     },
@@ -639,7 +655,7 @@ export const SITE_CONTENT = {
       idealFor: 'Healthcare organizations preparing for payer audits, expanding service lines, or resolving high denial rates.',
       features: [
         'Pre-bill and post-bill statistical chart sample audits',
-        'E/M documentation bell-curve benchmarking',
+        'E/M documentation bell-curve benchmarking under E/M 2027 rules',
         'Provider education & CDI feedback webinars',
         'Denial root-cause remediation roadmaps',
         'Comprehensive compliance audit reporting',
@@ -648,41 +664,20 @@ export const SITE_CONTENT = {
     },
   ],
 
-  medicalWriting: {
-    badge: 'COMING SOON',
-    title: 'Medical Writing is',
-    titleAccent: 'our next department.',
-    lede: 'Expanding our clinical documentation expertise to support pharmaceutical, biotech, medical device, and academic healthcare institutions with high-rigor medical writing.',
-    cta: 'Join the Early-Access List',
-    tiles: [
-      {
-        title: 'Regulatory Writing',
-        desc: 'Clinical study reports (CSRs), investigator brochures, protocols, and regulatory submission summaries adhering to ICH-GCP standards.',
-        icon: 'FileText',
-      },
-      {
-        title: 'Peer-Reviewed Publications',
-        desc: 'Manuscript preparation, scientific posters, abstracts, and journal submissions written to ICMJE publication guidelines.',
-        icon: 'BookOpen',
-      },
-      {
-        title: 'Medical Communications',
-        desc: 'Advisory board summaries, scientific slide decks, white papers, and continuing medical education (CME) content modules.',
-        icon: 'MessageSquare',
-      },
-      {
-        title: 'Patient-Facing Health Content',
-        desc: 'Clear, empathetic, health-literate patient education materials, disease state guides, and informed consent documentation.',
-        icon: 'HeartHandshake',
-      },
-    ],
-  },
+  ehrSystems: [
+    'IMS',
+    'eClinicalWorks',
+    'Epic',
+    'Allscripts',
+    'MD Office Manager',
+    'Practice Fusion',
+  ],
 
   locations: {
     eyebrow: 'GLOBAL COLLABORATION',
     title: 'Working while you sleep,',
     titleAccent: 'ready when you wake.',
-    lede: 'Our dual-hub delivery model combines US-based client leadership with our 24/7 technology and coding operations in India—enabling overnight chart turnaround and continuous revenue cycle velocity.',
+    lede: 'Our dual-hub delivery model combines US-based client leadership with our 24×7 operations in India—enabling overnight chart turnaround and continuous revenue cycle velocity.',
     hubs: [
       {
         id: 'us',
@@ -690,15 +685,25 @@ export const SITE_CONTENT = {
         role: 'Client Services & Account Leadership',
         timezone: 'America/New_York',
         city: 'New York / Eastern Time',
-        focus: ['Client Onboarding & BAA', 'Provider Relations & CDI', 'Executive Quarterly Reviews', 'Payer Contract Escalations'],
+        focus: [
+          'Account management, onboarding and consultations, with 24×7 support for urgent requests.',
+          'Provider Relations & CDI Feedback',
+          'Executive Quarterly Reviews',
+          'Payer Contract Escalations',
+        ],
       },
       {
         id: 'india',
         country: 'India',
-        role: 'Delivery Operations & Technology Center',
+        role: 'Delivery Operations & Quality Center',
         timezone: 'Asia/Kolkata',
         city: 'Technology Park, Ahmedabad',
-        focus: ['24/7 Coding & Claim Scrubbing', 'Overnight Chart Queue Clearing', 'AI/ML Healthcare Systems Lab', 'Second-Level QA Auditing'],
+        focus: [
+          'Certified coders, billers and QA auditors working 24×7, delivering overnight for your next business day.',
+          'Specialty Routing & Chart Abstraction',
+          'Second-Level QA Auditing to 98.5%',
+          'Continuous Claim Scrubbing & Posting',
+        ],
       },
     ],
   },
@@ -709,12 +714,17 @@ export const SITE_CONTENT = {
       answer: 'Yes, absolutely. As a standard requirement for all US healthcare partnerships, we execute a legally binding Business Associate Agreement (BAA) before receiving any protected health information (PHI) or accessing your electronic health record system. Our operations strictly comply with HIPAA privacy and security rules.',
     },
     {
-      question: 'Does your AI make the final coding decision?',
-      answer: 'No. Our proprietary healthcare AI is strictly computer-assisted coding (CAC)—it pre-screens documentation, flags potential ICD-10/CPT codes, and identifies documentation gaps. 100% of charts are reviewed, verified, and signed off by a credentialed human medical coder (CPC, CCS, CRC) before submission. AI never files claims autonomously.',
+      question: 'What coding accuracy do you guarantee?',
+      answer: 'We maintain 98.5% coding accuracy, measured through second-level QA audits on every batch and reported to you each month by coder and specialty.',
     },
     {
-      question: 'Which Electronic Health Record (EHR) systems do you work with?',
-      answer: 'We are EHR-agnostic. Our certified teams have extensive direct production experience with Epic, Oracle Health (Cerner), athenahealth, Meditech, eClinicalWorks, NextGen, Allscripts, Greenway, and specialized clinical software. We access your system securely via your preferred VPN or secure remote gateway.',
+      question: 'Do you offer 24×7 support?',
+      answer: 'Yes. Our team is available 24×7, so urgent questions, backlogs and turnaround requests are handled on your schedule, including nights and weekends.',
+    },
+    {
+      question: 'Which EHR systems do you work with?',
+      answer: 'Our coders work directly inside your EHR through secure remote access that you control. We currently work with:',
+      ehrList: ['IMS', 'eClinicalWorks', 'Epic', 'Allscripts', 'MD Office Manager', 'Practice Fusion'],
     },
     {
       question: 'How does the complimentary 50-chart coding audit work?',
@@ -730,7 +740,7 @@ export const SITE_CONTENT = {
     eyebrow: 'LET\'S CONNECT',
     title: 'Let\'s discuss your',
     titleAccent: 'practice needs.',
-    lede: 'Connect with our leadership team for a confidential revenue cycle consultation or to claim your complimentary 50-chart coding accuracy audit.',
+    lede: 'Request a complimentary revenue cycle consultation and a free 50-chart audit. Our team is available 24×7.',
     direct: {
       phone: '+1 (XXX) XXX-XXXX [[REAL NUMBER]]',
       email: 'info@crystalclearone.net',
@@ -741,9 +751,7 @@ export const SITE_CONTENT = {
       { id: 'free-audit', label: 'Free 50-chart coding audit' },
       { id: 'coding', label: 'Medical coding services' },
       { id: 'billing', label: 'Medical billing & AR recovery' },
-      { id: 'rcm', label: 'Full revenue cycle management' },
-      { id: 'ai-ml', label: 'AI/ML healthcare systems engineering' },
-      { id: 'writing', label: 'Medical writing (early access list)' },
+      { id: 'rcm', label: 'End-to-end revenue cycle management' },
     ],
   },
 

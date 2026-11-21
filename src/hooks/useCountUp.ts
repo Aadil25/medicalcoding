@@ -3,9 +3,10 @@ import { useState, useEffect, useRef } from 'react';
 export function useCountUp(
   target: number,
   duration = 1800,
-  startTrigger = true
-): number {
-  const [count, setCount] = useState<number>(0);
+  startTrigger = true,
+  decimals = 0
+): string {
+  const [val, setVal] = useState<number>(0);
   const frameRef = useRef<number | null>(null);
 
   useEffect(() => {
@@ -18,12 +19,13 @@ export function useCountUp(
       const progress = Math.min((timestamp - startTime) / duration, 1);
       // Ease out cubic
       const easeProgress = 1 - Math.pow(1 - progress, 3);
-      setCount(Math.round(easeProgress * target));
+      const currentVal = easeProgress * target;
+      setVal(currentVal);
 
       if (progress < 1) {
         frameRef.current = requestAnimationFrame(animate);
       } else {
-        setCount(target);
+        setVal(target);
       }
     };
 
@@ -34,6 +36,9 @@ export function useCountUp(
     };
   }, [target, duration, startTrigger]);
 
-  return count;
-}
+  if (!startTrigger) {
+    return target.toFixed(decimals);
+  }
 
+  return val.toFixed(decimals);
+}

@@ -1,11 +1,11 @@
 import React from 'react';
-import { Award, CheckCircle2, HelpCircle } from 'lucide-react';
+import { Award } from 'lucide-react';
 
 export const AuditScorecardVisual: React.FC<{ isDark?: boolean }> = ({ isDark = false }) => {
   const metrics = [
-    { label: 'Diagnosis Accuracy (ICD-10-CM)', value: '97.2%', status: 'Superior', color: 'text-emerald-700 bg-emerald-100' },
-    { label: 'Procedure Coding (CPT / HCPCS)', value: '96.8%', status: 'Superior', color: 'text-emerald-700 bg-emerald-100' },
-    { label: 'E/M Level Agreement Rate', value: '95.4%', status: 'Compliant', color: 'text-teal-800 bg-teal/20' },
+    { label: 'Diagnosis Coding Accuracy (ICD-10-CM)', value: '98.5%', status: 'Superior', color: 'text-emerald-700 bg-emerald-100' },
+    { label: 'Procedure Coding Accuracy (CPT / HCPCS)', value: '98.5%', status: 'Superior', color: 'text-emerald-700 bg-emerald-100' },
+    { label: 'Charts within 24-hour turnaround', value: '100%', status: 'Guaranteed', color: 'text-teal-800 bg-teal/20' },
     { label: 'CDI Physician Queries Raised', value: '14 Charts', status: 'Clarified', color: 'text-blue-800 bg-blue-100' },
   ];
 
@@ -23,7 +23,7 @@ export const AuditScorecardVisual: React.FC<{ isDark?: boolean }> = ({ isDark = 
           <span className="font-bold tracking-tight text-navy">QA AUDIT SCORECARD</span>
         </div>
         <span className="px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-[10px] font-bold">
-          Score: 96.5% Overall
+          Score: 98.5% Overall
         </span>
       </div>
 
@@ -35,7 +35,7 @@ export const AuditScorecardVisual: React.FC<{ isDark?: boolean }> = ({ isDark = 
           >
             <div>
               <div className="text-[11px] font-bold text-navy">{m.label}</div>
-              <div className="text-[10px] text-muted">Statistically validated sample</div>
+              <div className="text-[10px] text-muted">Statistically validated two-level sample</div>
             </div>
             <div className="text-right">
               <div className="text-sm font-bold text-navy">{m.value}</div>
@@ -54,4 +54,3 @@ export const AuditScorecardVisual: React.FC<{ isDark?: boolean }> = ({ isDark = 
     </div>
   );
 };
-

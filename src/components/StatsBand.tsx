@@ -4,17 +4,18 @@ import { useCountUp } from '../hooks/useCountUp';
 
 const StatCard: React.FC<{
   target: number;
+  decimals?: number;
   suffix: string;
   label: string;
   note: string;
   startTrigger: boolean;
-}> = ({ target, suffix, label, note, startTrigger }) => {
-  const count = useCountUp(target, 1600, startTrigger);
+}> = ({ target, decimals = 0, suffix, label, note, startTrigger }) => {
+  const countStr = useCountUp(target, 1600, startTrigger, decimals);
 
   return (
     <div className="flex flex-col items-center text-center p-6 sm:p-8">
       <div className="text-4xl sm:text-5xl lg:text-6xl font-extrabold font-mono text-white tracking-tight flex items-baseline justify-center">
-        <span>{startTrigger ? count : target}</span>
+        <span>{countStr}</span>
         <span className="text-teal-bright text-3xl sm:text-4xl ml-0.5">{suffix}</span>
       </div>
       <div className="mt-2 text-base sm:text-lg font-bold text-white tracking-tight">
@@ -77,6 +78,7 @@ export const StatsBand: React.FC = () => {
             <StatCard
               key={idx}
               target={item.value}
+              decimals={item.decimals}
               suffix={item.suffix}
               label={item.label}
               note={item.note}
@@ -88,4 +90,3 @@ export const StatsBand: React.FC = () => {
     </section>
   );
 };
-

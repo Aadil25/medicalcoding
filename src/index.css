@@ -54,6 +54,52 @@
   animation: ecgPulse 3s linear infinite;
 }
 
+/* Security Shield Drawing & Shimmer */
+@keyframes drawShieldLoop {
+  0% {
+    stroke-dashoffset: 160;
+  }
+  30%, 80% {
+    stroke-dashoffset: 0;
+  }
+  100% {
+    stroke-dashoffset: 160;
+  }
+}
+
+@keyframes drawCheckLoop {
+  0%, 25% {
+    stroke-dashoffset: 40;
+  }
+  50%, 80% {
+    stroke-dashoffset: 0;
+  }
+  100% {
+    stroke-dashoffset: 40;
+  }
+}
+
+@keyframes shimmerSweep {
+  0% {
+    transform: translate(-100%, -100%) rotate(25deg);
+  }
+  50%, 100% {
+    transform: translate(100%, 100%) rotate(25deg);
+  }
+}
+
+.draw-shield {
+  stroke-dasharray: 160;
+  stroke-dashoffset: 0;
+  animation: drawShieldLoop 5s ease-in-out infinite;
+}
+
+.draw-check {
+  stroke-dasharray: 40;
+  stroke-dashoffset: 0;
+  animation: drawCheckLoop 5s ease-in-out infinite;
+}
+
 /* Turn off smooth scroll & animations if prefers-reduced-motion is active */
 @media (prefers-reduced-motion: reduce) {
   *,

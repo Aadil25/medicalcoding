@@ -131,4 +131,3 @@ export const Nav: React.FC = () => {
     </header>
   );
 };
-

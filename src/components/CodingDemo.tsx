@@ -1,14 +1,15 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { SITE_CONTENT } from '../content/site-content';
-import { Play, RotateCcw, Sparkles, CheckCircle2, AlertCircle, FileText, Bot } from 'lucide-react';
+import { RotateCcw, FileText, UserCheck, CheckCircle2 } from 'lucide-react';
 
-export const AiCodingDemo: React.FC = () => {
+export const CodingDemo: React.FC = () => {
   const [activeStepIndex, setActiveStepIndex] = useState<number>(-1);
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
   const [hasPlayedOnce, setHasPlayedOnce] = useState<boolean>(false);
 
   const containerRef = useRef<HTMLElement | null>(null);
-  const { title, subtitle, noteText, steps, disclaimer } = SITE_CONTENT.aiDemo;
+  const { eyebrow, title, titleAccent, subtitle, noteText, panelTitle, steps, disclaimer } =
+    SITE_CONTENT.codingDemo;
 
   // Auto play when scrolled into view
   useEffect(() => {
@@ -59,7 +60,6 @@ export const AiCodingDemo: React.FC = () => {
 
   // Helper to render clinical note with dynamic multi-color highlights
   const renderInteractiveNote = () => {
-    // Breakpoints in noteText for highlights
     const isStep1Active = activeStepIndex >= 0;
     const isStep2Active = activeStepIndex >= 1;
     const isStep3Active = activeStepIndex >= 2;
@@ -135,6 +135,7 @@ export const AiCodingDemo: React.FC = () => {
   };
 
   const revealedCount = Math.max(0, activeStepIndex + 1);
+  const progressPercent = Math.round((revealedCount / steps.length) * 100);
 
   return (
     <section
@@ -143,17 +144,16 @@ export const AiCodingDemo: React.FC = () => {
       className="bg-white py-24 sm:py-32 border-b border-line overflow-hidden"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-mist text-teal text-xs font-mono font-bold uppercase tracking-widest mb-4">
-            <Sparkles className="w-3.5 h-3.5" />
-            <span>INTERACTIVE CLINICAL NLP SIMULATION</span>
+            <UserCheck className="w-3.5 h-3.5" />
+            <span>{eyebrow}</span>
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-navy leading-tight tracking-tight text-balance">
-            Watch a clinical note{' '}
+            {title}{' '}
             <span className="font-serif italic font-normal text-teal">
-              become a claim.
+              {titleAccent}
             </span>
           </h2>
           <p className="mt-4 text-base sm:text-lg text-muted max-w-2xl mx-auto leading-relaxed">
@@ -163,26 +163,25 @@ export const AiCodingDemo: React.FC = () => {
 
         {/* Demo Stage Split Panel */}
         <div className="rounded-34 border border-line bg-paper shadow-2xl overflow-hidden max-w-6xl mx-auto">
-          
           {/* Top Demo Bar */}
           <div className="bg-[#F8FAFC] px-6 py-4 border-b border-line flex flex-wrap items-center justify-between gap-4">
             <div className="flex items-center gap-3">
               <span className="w-3 h-3 rounded-full bg-teal-bright animate-ping" />
               <div className="text-xs font-mono font-bold text-navy flex items-center gap-2">
                 <span>Status:</span>
-                <span className={isPlaying ? 'text-teal' : 'text-muted'}>
+                <span className={isPlaying ? 'text-teal' : 'text-navy'}>
                   {isPlaying
-                    ? `Analyzing token patterns (Step ${activeStepIndex + 1} of ${steps.length})...`
+                    ? `Coder reviewing… ${progressPercent}%`
                     : activeStepIndex >= 0
-                    ? 'Extraction complete · Awaiting coder verification'
-                    : 'Ready to run'}
+                    ? 'Coding complete'
+                    : 'Ready to review'}
                 </span>
               </div>
             </div>
 
             <div className="flex items-center gap-4">
               <div className="text-xs font-mono font-bold bg-white px-3 py-1.5 rounded-full border border-line">
-                <span className="text-muted">Extracted Findings: </span>
+                <span className="text-muted">Validated Findings: </span>
                 <span className="text-teal font-extrabold">{revealedCount}</span> / {steps.length}
               </div>
 
@@ -199,7 +198,6 @@ export const AiCodingDemo: React.FC = () => {
 
           {/* Split Body */}
           <div className="grid grid-cols-1 lg:grid-cols-12 min-h-[460px]">
-            
             {/* Left Column: Clinical Progress Note */}
             <div className="lg:col-span-6 bg-white p-7 sm:p-10 border-b lg:border-b-0 lg:border-r border-line flex flex-col justify-between">
               <div>
@@ -207,11 +205,11 @@ export const AiCodingDemo: React.FC = () => {
                   <div className="flex items-center gap-2.5">
                     <FileText className="w-4 h-4 text-teal" />
                     <span className="text-xs font-mono font-bold uppercase tracking-wider text-navy">
-                      Clinical Encounter Note (Unstructured)
+                      Clinical Encounter Note (SOAP)
                     </span>
                   </div>
                   <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-mist text-teal font-semibold">
-                    EHR Source: SOAP Note
+                    Coder Abstraction Stage
                   </span>
                 </div>
 
@@ -222,23 +220,23 @@ export const AiCodingDemo: React.FC = () => {
               </div>
 
               <div className="mt-6 pt-4 border-t border-line text-[11px] font-mono text-muted flex items-center justify-between">
-                <span>Token Window: 94 Words Analyzed</span>
-                <span className="text-teal font-bold">1 CDI Query Triggered</span>
+                <span>Certified Coder Review</span>
+                <span className="text-teal font-bold">1 Provider Query Flagged</span>
               </div>
             </div>
 
-            {/* Right Column: Suggested Codes on Navy Gradient */}
+            {/* Right Column: Assigned Codes on Navy Gradient */}
             <div className="lg:col-span-6 bg-gradient-to-br from-[#061B30] to-[#0A2D4D] text-white p-7 sm:p-10 flex flex-col justify-between">
               <div>
                 <div className="flex items-center justify-between pb-4 border-b border-white/10 mb-6">
                   <div className="flex items-center gap-2.5">
-                    <Bot className="w-4 h-4 text-teal-bright" />
+                    <UserCheck className="w-4 h-4 text-teal-bright" />
                     <span className="text-xs font-mono font-bold uppercase tracking-wider text-teal-bright">
-                      Suggested Codes & Quality Flags
+                      {panelTitle}
                     </span>
                   </div>
                   <span className="text-[10px] font-mono text-slate-300">
-                    AAPC / CMS-HCC Model V28
+                    E/M 2027 & CMS-HCC V28
                   </span>
                 </div>
 
@@ -294,32 +292,30 @@ export const AiCodingDemo: React.FC = () => {
 
                   {activeStepIndex < 0 && (
                     <div className="py-16 text-center text-slate-400 font-mono text-xs">
-                      Press "Replay Demo" or scroll down to initiate extraction...
+                      Press "Replay Demo" or scroll down to initiate review...
                     </div>
                   )}
                 </div>
               </div>
 
-              {/* Human coder signoff banner */}
+              {/* Status footer */}
               <div className="mt-6 pt-4 border-t border-white/10 flex items-center justify-between text-xs font-mono text-slate-300">
                 <span className="flex items-center gap-1.5">
                   <CheckCircle2 className="w-4 h-4 text-teal-bright" />
-                  <span>Ready for Certified Coder Signoff</span>
+                  <span>1 provider query · ready for QA audit</span>
                 </span>
-                <span className="text-teal-bright font-bold">100% Human Reviewed</span>
+                <span className="text-teal-bright font-bold">98.5% Accuracy Target</span>
               </div>
             </div>
-
           </div>
 
           {/* Bottom Disclaimer */}
           <div className="bg-[#071F37] text-slate-400 px-6 py-3 text-center text-xs font-mono border-t border-white/10">
             {disclaimer}
           </div>
-
         </div>
-
       </div>
     </section>
   );
 };
+

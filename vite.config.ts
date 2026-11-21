@@ -5,8 +5,25 @@ import react from '@vitejs/plugin-react';
 export default defineConfig({
   plugins: [react()],
   server: {
-    port: 5173,
+    port: 4001,
     host: true,
+    strictPort: true,
+  },
+  preview: {
+    port: 4001,
+    host: true,
+    strictPort: true,
+  },
+  optimizeDeps: {
+    include: [
+      'react',
+      'react-dom',
+      'react-dom/client',
+      'lucide-react',
+      'gsap',
+      'gsap/ScrollTrigger',
+      'lenis',
+    ],
   },
 });
 

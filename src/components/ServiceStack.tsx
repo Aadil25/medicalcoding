@@ -49,7 +49,7 @@ export const ServiceStack: React.FC = () => {
             </span>
           </h2>
           <p className="mt-4 text-base sm:text-lg text-muted max-w-2xl leading-relaxed">
-            From chart intake to cash posting, we combine AAPC/AHIMA certified specialists with intelligent technology to eliminate revenue leakage and accelerate cash flow.
+            From chart intake to cash posting, we combine AAPC/AHIMA certified specialists with structured two-level QA workflows to eliminate revenue leakage and accelerate cash flow.
           </p>
         </div>
 

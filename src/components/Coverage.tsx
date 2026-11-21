@@ -1,38 +1,37 @@
 import React, { useEffect, useRef } from 'react';
-import { SITE_CONTENT, AiSystemItem } from '../content/site-content';
+import { SITE_CONTENT } from '../content/site-content';
 import { gsap, ScrollTrigger } from '../animations/gsap-setup';
 import { useReducedMotion } from '../hooks/useReducedMotion';
 import {
-  Cpu,
-  TrendingDown,
-  Database,
-  Users,
-  Sparkles,
-  Smartphone,
+  Building2,
+  Stethoscope,
+  FileCheck2,
+  TrendingUp,
+  Scissors,
+  Activity,
   CheckCircle2,
   ArrowRight,
 } from 'lucide-react';
 
-const icons = [
-  <Cpu className="w-6 h-6" />,
-  <TrendingDown className="w-6 h-6" />,
-  <Database className="w-6 h-6" />,
-  <Users className="w-6 h-6" />,
-  <Sparkles className="w-6 h-6" />,
-  <Smartphone className="w-6 h-6" />,
+const settingIcons = [
+  <Building2 className="w-6 h-6" />,
+  <Stethoscope className="w-6 h-6" />,
+  <FileCheck2 className="w-6 h-6" />,
+  <TrendingUp className="w-6 h-6" />,
+  <Scissors className="w-6 h-6" />,
+  <Activity className="w-6 h-6" />,
 ];
 
-export const AiRail: React.FC = () => {
+export const Coverage: React.FC = () => {
   const sectionRef = useRef<HTMLElement | null>(null);
   const pinWrapperRef = useRef<HTMLDivElement | null>(null);
   const trackRef = useRef<HTMLDivElement | null>(null);
   const progressBarRef = useRef<HTMLDivElement | null>(null);
 
   const prefersReducedMotion = useReducedMotion();
-  const cards = SITE_CONTENT.aiRail;
+  const { eyebrow, title, titleAccent, sideText, cards } = SITE_CONTENT.coverage;
 
   useEffect(() => {
-    // Check if on desktop and not preferring reduced motion
     if (prefersReducedMotion || typeof window === 'undefined') return;
 
     const track = trackRef.current;
@@ -40,7 +39,6 @@ export const AiRail: React.FC = () => {
     const section = sectionRef.current;
     if (!track || !pinWrapper || !section) return;
 
-    // Only pin on screens >= 900px
     const mm = gsap.matchMedia();
 
     mm.add('(min-width: 900px)', () => {
@@ -78,7 +76,7 @@ export const AiRail: React.FC = () => {
 
   return (
     <section
-      id="ai"
+      id="coverage"
       ref={sectionRef}
       className="bg-navy-deep text-white relative"
     >
@@ -91,19 +89,19 @@ export const AiRail: React.FC = () => {
               <div className="flex items-center gap-3 mb-3">
                 <span className="w-8 h-[2px] bg-teal-bright" />
                 <span className="text-xs font-mono font-bold uppercase tracking-[0.2em] text-teal-bright">
-                  HEALTHCARE AI & DATA PLATFORMS
+                  {eyebrow}
                 </span>
               </div>
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white leading-tight tracking-tight">
-                We also build the software{' '}
+                {title}{' '}
                 <span className="font-serif italic font-normal text-teal-bright">
-                  behind healthcare.
+                  {titleAccent}
                 </span>
               </h2>
             </div>
             
             <p className="text-sm sm:text-base text-slate-300 max-w-md">
-              Beyond operational coding, our specialized engineering team designs and ships HIPAA-grade clinical AI, predictive RCM models, and EHR integration backbones.
+              {sideText}
             </p>
           </div>
 
@@ -117,8 +115,8 @@ export const AiRail: React.FC = () => {
               />
             </div>
             <div className="flex justify-between text-[11px] font-mono text-slate-400 mt-2">
-              <span>Scroll to navigate systems</span>
-              <span>6 Engineering Pillars</span>
+              <span>Scroll to explore care settings</span>
+              <span>6 Coding Coverage Settings</span>
             </div>
           </div>
         </div>
@@ -151,7 +149,7 @@ export const AiRail: React.FC = () => {
                             : 'bg-teal/20 text-teal-bright border border-teal/40'
                         }`}
                       >
-                        {icons[idx] || <Cpu className="w-6 h-6" />}
+                        {settingIcons[idx] || <Building2 className="w-6 h-6" />}
                       </div>
                       <span className="text-2xl font-mono font-extrabold opacity-60">
                         {card.number}
@@ -159,7 +157,7 @@ export const AiRail: React.FC = () => {
                     </div>
 
                     <div className="text-xs font-mono font-bold uppercase tracking-wider text-teal-bright mb-1">
-                      {card.category}
+                      {card.setting}
                     </div>
 
                     <h3 className="text-xl sm:text-2xl font-bold text-white leading-snug">
@@ -186,13 +184,13 @@ export const AiRail: React.FC = () => {
 
                   <div className="mt-8 pt-6 border-t border-white/15 flex items-center justify-between">
                     <span className="text-xs font-mono text-slate-300">
-                      HL7 · FHIR · Cloud
+                      24×7 Coverage Available
                     </span>
                     <a
                       href="#contact"
                       className="inline-flex items-center gap-1.5 text-xs font-bold text-teal-bright hover:text-white transition-colors"
                     >
-                      <span>Engineering consult</span>
+                      <span>Inquire coverage</span>
                       <ArrowRight className="w-3.5 h-3.5" />
                     </a>
                   </div>
@@ -205,7 +203,7 @@ export const AiRail: React.FC = () => {
         {/* Bottom spacing */}
         <div className="mt-6 text-center lg:hidden">
           <span className="text-xs font-mono text-slate-400">
-            6 Specialized Healthcare Systems
+            6 Specialized Clinical Care Settings
           </span>
         </div>
 

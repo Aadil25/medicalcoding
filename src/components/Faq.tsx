@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { SITE_CONTENT, FaqItem } from '../content/site-content';
+import { SITE_CONTENT } from '../content/site-content';
 import { Plus, HelpCircle } from 'lucide-react';
 
 export const Faq: React.FC = () => {
@@ -13,7 +13,6 @@ export const Faq: React.FC = () => {
   return (
     <section id="faq" className="bg-paper py-24 sm:py-32 border-b border-line">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        
         {/* Section Header */}
         <div className="text-center mb-16">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-mist text-teal text-xs font-mono font-bold uppercase tracking-widest mb-4">
@@ -27,7 +26,7 @@ export const Faq: React.FC = () => {
             </span>
           </h2>
           <p className="mt-4 text-base sm:text-lg text-muted max-w-xl mx-auto leading-relaxed">
-            Direct information regarding HIPAA compliance, our human-in-the-loop AI philosophy, and onboarding timelines.
+            Direct information regarding HIPAA compliance, 98.5% accuracy audits, 24×7 support, and onboarding timelines.
           </p>
         </div>
 
@@ -67,7 +66,21 @@ export const Faq: React.FC = () => {
                     id={`faq-answer-${idx}`}
                     className="px-6 sm:px-7 pb-6 sm:pb-7 text-sm sm:text-base text-muted leading-relaxed border-t border-line/40 pt-4"
                   >
-                    {faq.answer}
+                    <p>{faq.answer}</p>
+
+                    {/* EHR Pill Chips List */}
+                    {faq.ehrList && (
+                      <ul className="ehr-list flex flex-wrap gap-2 mt-3 pt-2">
+                        {faq.ehrList.map((ehr) => (
+                          <li
+                            key={ehr}
+                            className="px-3 py-1 rounded-full bg-mist border border-teal/20 text-navy font-mono text-xs font-semibold shadow-sm"
+                          >
+                            {ehr}
+                          </li>
+                        ))}
+                      </ul>
+                    )}
                   </div>
                 )}
               </div>
@@ -78,15 +91,13 @@ export const Faq: React.FC = () => {
         {/* Prompt to ask custom questions */}
         <div className="mt-12 text-center">
           <p className="text-sm text-muted">
-            Have a specialized requirement or custom EHR workflow?{' '}
+            Have a specialized requirement or question about your practice?{' '}
             <a href="#contact" className="text-teal font-semibold underline underline-offset-4 hover:text-navy">
               Speak with our healthcare solutions team →
             </a>
           </p>
         </div>
-
       </div>
     </section>
   );
 };
-

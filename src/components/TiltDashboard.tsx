@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { SITE_CONTENT } from '../content/site-content';
-import { gsap, ScrollTrigger } from '../animations/gsap-setup';
+import { gsap } from '../animations/gsap-setup';
 import { useReducedMotion } from '../hooks/useReducedMotion';
 import {
   LayoutDashboard,
@@ -10,8 +10,6 @@ import {
   Clock,
   ClipboardCheck,
   BarChart3,
-  Search,
-  Bell,
   ArrowUpRight,
   ArrowDownRight,
   ShieldCheck,
@@ -77,7 +75,6 @@ export const TiltDashboard: React.FC = () => {
       className="bg-paper py-24 sm:py-32 border-b border-line overflow-hidden"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-mist text-teal text-xs font-mono font-bold uppercase tracking-widest mb-4">
@@ -107,7 +104,6 @@ export const TiltDashboard: React.FC = () => {
           >
             {/* Browser Chrome Header */}
             <div className="bg-[#F1F5F9] px-4 sm:px-6 py-3 border-b border-line flex items-center justify-between gap-4">
-              {/* Traffic Light Dots */}
               <div className="flex items-center gap-2">
                 <span className="w-3 h-3 rounded-full bg-rose-400/90 inline-block" />
                 <span className="w-3 h-3 rounded-full bg-amber-400/90 inline-block" />
@@ -121,7 +117,6 @@ export const TiltDashboard: React.FC = () => {
                 <span>{reportingDashboard.url}</span>
               </div>
 
-              {/* Right Profile & Indicator */}
               <div className="flex items-center gap-2 text-xs font-mono text-teal">
                 <span className="w-2 h-2 rounded-full bg-teal-bright animate-ping hidden sm:inline-block" />
                 <span className="font-semibold hidden sm:inline-block">LIVE TELEMETRY</span>
@@ -130,7 +125,6 @@ export const TiltDashboard: React.FC = () => {
 
             {/* Dashboard Workspace */}
             <div className="grid grid-cols-1 md:grid-cols-12 min-h-[500px]">
-              
               {/* Left Side Navigation */}
               <div className="hidden md:block md:col-span-3 bg-[#FAFCFD] p-5 border-r border-line flex flex-col justify-between">
                 <div>
@@ -162,7 +156,6 @@ export const TiltDashboard: React.FC = () => {
 
               {/* Right Content Area */}
               <div className="col-span-1 md:col-span-9 p-6 sm:p-8 bg-paper/60 space-y-6">
-                
                 {/* Dashboard Topbar */}
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-line">
                   <div>
@@ -172,7 +165,7 @@ export const TiltDashboard: React.FC = () => {
                   <div className="flex items-center gap-3">
                     <span className="px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 text-xs font-mono font-bold flex items-center gap-1.5">
                       <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
-                      <span>EHR Sync: Connected</span>
+                      <span>EHR Gateway: Secure Remote</span>
                     </span>
                   </div>
                 </div>
@@ -206,14 +199,13 @@ export const TiltDashboard: React.FC = () => {
 
                 {/* Charts Area */}
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-                  
-                  {/* Clean Claim Area Line Chart */}
+                  {/* Coding Accuracy Line Chart */}
                   <div className="lg:col-span-7 bg-white p-5 rounded-20 border border-line shadow-sm">
                     <div className="flex items-center justify-between mb-4">
                       <span className="text-xs font-mono font-bold uppercase tracking-wider text-navy">
-                        Clean Claim Rate (Past 6 Months)
+                        {reportingDashboard.chartTitle}
                       </span>
-                      <span className="text-[11px] font-mono text-teal font-bold">Target: 95%+</span>
+                      <span className="text-[11px] font-mono text-teal font-bold">Standard: 98.5%</span>
                     </div>
 
                     {/* Area Line Chart SVG */}
@@ -225,41 +217,40 @@ export const TiltDashboard: React.FC = () => {
                             <stop offset="100%" stopColor="#0F8B8D" stopOpacity="0.02" />
                           </linearGradient>
                         </defs>
-                        {/* Grid lines */}
                         <line x1="0" y1="40" x2="400" y2="40" stroke="#E2E8F0" strokeDasharray="3 3" />
                         <line x1="0" y1="80" x2="400" y2="80" stroke="#E2E8F0" strokeDasharray="3 3" />
                         <line x1="0" y1="120" x2="400" y2="120" stroke="#E2E8F0" strokeDasharray="3 3" />
 
-                        {/* Benchmark Line at 95% (y=60) */}
-                        <line x1="0" y1="60" x2="400" y2="60" stroke="#F2B544" strokeWidth="1.5" strokeDasharray="4 4" />
+                        {/* Benchmark Line at 98.5% (y=30) */}
+                        <line x1="0" y1="30" x2="400" y2="30" stroke="#0F8B8D" strokeWidth="1.5" strokeDasharray="4 4" />
 
                         {/* Area */}
                         <path
-                          d="M0,130 Q70,110 130,80 T260,50 T400,28 L400,160 L0,160 Z"
+                          d="M0,110 Q70,75 130,50 T260,32 T400,28 L400,160 L0,160 Z"
                           fill="url(#chartAreaGrad)"
                         />
                         {/* Line */}
                         <path
-                          d="M0,130 Q70,110 130,80 T260,50 T400,28"
+                          d="M0,110 Q70,75 130,50 T260,32 T400,28"
                           fill="none"
                           stroke="#0F8B8D"
                           strokeWidth="3.5"
                           strokeLinecap="round"
                         />
                         {/* Dots */}
-                        <circle cx="130" cy="80" r="4.5" fill="#0A2D4D" stroke="#1BB3B0" strokeWidth="2.5" />
-                        <circle cx="260" cy="50" r="4.5" fill="#0A2D4D" stroke="#1BB3B0" strokeWidth="2.5" />
+                        <circle cx="130" cy="50" r="4.5" fill="#0A2D4D" stroke="#1BB3B0" strokeWidth="2.5" />
+                        <circle cx="260" cy="32" r="4.5" fill="#0A2D4D" stroke="#1BB3B0" strokeWidth="2.5" />
                         <circle cx="400" cy="28" r="5" fill="#0F8B8D" stroke="#FFFFFF" strokeWidth="2.5" />
                       </svg>
                     </div>
 
                     <div className="flex justify-between text-[10px] font-mono text-muted mt-2">
-                      <span>May</span>
-                      <span>Jun</span>
-                      <span>Jul</span>
-                      <span>Aug</span>
-                      <span>Sep</span>
-                      <span className="font-bold text-teal">Oct (97.4%)</span>
+                      <span>May (98.2%)</span>
+                      <span>Jun (98.3%)</span>
+                      <span>Jul (98.4%)</span>
+                      <span>Aug (98.5%)</span>
+                      <span>Sep (98.5%)</span>
+                      <span className="font-bold text-teal">Oct (98.5%)</span>
                     </div>
                   </div>
 
@@ -269,14 +260,12 @@ export const TiltDashboard: React.FC = () => {
                       <span className="text-xs font-mono font-bold uppercase tracking-wider text-navy">
                         Denials by Reason
                       </span>
-                      <span className="text-[10px] font-mono text-muted">Total: 111</span>
+                      <span className="text-[10px] font-mono text-muted">Initial: 1.8%</span>
                     </div>
 
-                    {/* Donut representation */}
                     <div className="flex items-center gap-4 my-auto">
                       <div className="relative w-28 h-28 flex-shrink-0">
                         <svg viewBox="0 0 36 36" className="w-full h-full -rotate-90">
-                          {/* Circle segments */}
                           <circle cx="18" cy="18" r="15.9155" fill="none" stroke="#E2E8F0" strokeWidth="4.5" />
                           <circle cx="18" cy="18" r="15.9155" fill="none" stroke="#0F8B8D" strokeWidth="4.5" strokeDasharray="38 62" strokeDashoffset="0" />
                           <circle cx="18" cy="18" r="15.9155" fill="none" stroke="#1BB3B0" strokeWidth="4.5" strokeDasharray="26 74" strokeDashoffset="-38" />
@@ -284,12 +273,11 @@ export const TiltDashboard: React.FC = () => {
                           <circle cx="18" cy="18" r="15.9155" fill="none" stroke="#0A2D4D" strokeWidth="4.5" strokeDasharray="15 85" strokeDashoffset="-85" />
                         </svg>
                         <div className="absolute inset-0 flex flex-col items-center justify-center text-center">
-                          <span className="text-xs font-mono font-bold text-navy">2.8%</span>
-                          <span className="text-[8px] text-muted uppercase">Rate</span>
+                          <span className="text-xs font-mono font-bold text-navy">1.8%</span>
+                          <span className="text-[8px] text-muted uppercase">Denial Rate</span>
                         </div>
                       </div>
 
-                      {/* Legend */}
                       <div className="space-y-1.5 text-[11px] font-mono">
                         {reportingDashboard.denialReasons.map((d, i) => (
                           <div key={d.code} className="flex items-center justify-between gap-2">
@@ -317,11 +305,8 @@ export const TiltDashboard: React.FC = () => {
                       All root-cause denials automatically remediated
                     </div>
                   </div>
-
                 </div>
-
               </div>
-
             </div>
 
             {/* Bottom Caption */}
@@ -330,9 +315,7 @@ export const TiltDashboard: React.FC = () => {
             </div>
           </div>
         </div>
-
       </div>
     </section>
   );
 };
-

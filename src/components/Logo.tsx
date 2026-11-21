@@ -86,7 +86,7 @@ export const Logo: React.FC<LogoProps> = ({
           className="font-bold tracking-[0.28em] text-[10px] sm:text-[11px] mt-0.5"
           style={{ color: subColor }}
         >
-          ONE.NET LLC
+          1.NET LLC
         </div>
         {showTagline && (
           <div

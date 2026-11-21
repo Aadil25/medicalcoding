@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { SITE_CONTENT } from '../content/site-content';
 import { HeroWaves } from './HeroWaves';
 import {
@@ -8,7 +8,6 @@ import {
   MapPin,
   Send,
   CheckCircle2,
-  AlertCircle,
   ShieldCheck,
 } from 'lucide-react';
 
@@ -42,19 +41,6 @@ export const Contact: React.FC = () => {
   const [submissionFeedback, setSubmissionFeedback] = useState<string | null>(null);
 
   const { eyebrow, title, titleAccent, lede, direct, interestOptions } = SITE_CONTENT.contact;
-
-  // Listen for early access preset trigger from Medical Writing section
-  useEffect(() => {
-    const handlePreset = (e: Event) => {
-      const customEvent = e as CustomEvent<string>;
-      if (customEvent.detail) {
-        setFormData((prev) => ({ ...prev, interest: customEvent.detail }));
-      }
-    };
-
-    window.addEventListener('preset-contact-interest', handlePreset);
-    return () => window.removeEventListener('preset-contact-interest', handlePreset);
-  }, []);
 
   const validate = (): boolean => {
     const errs: FormErrors = {};
@@ -110,9 +96,7 @@ export const Contact: React.FC = () => {
       <div className="absolute top-1/3 left-1/4 w-[600px] h-[600px] bg-teal/15 rounded-full blur-[140px] pointer-events-none" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16">
-        
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-          
           {/* Left Column: Direct Info & Consultation Value */}
           <div className="lg:col-span-5">
             <div className="flex items-center gap-3 mb-4">
@@ -355,16 +339,14 @@ export const Contact: React.FC = () => {
                       <Send className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                     </button>
                     <p className="text-center text-[11px] font-mono text-muted mt-3">
-                      Prompt response guaranteed within 24 business hours
+                      Prompt response guaranteed within 24 business hours · 24×7 support
                     </p>
                   </div>
                 </form>
               )}
             </div>
           </div>
-
         </div>
-
       </div>
 
       {/* Swoosh Wave Transition at the bottom of Contact */}
@@ -372,4 +354,3 @@ export const Contact: React.FC = () => {
     </section>
   );
 };
-
